@@ -1,0 +1,111 @@
+﻿@model CS4790ME.Models.VehicleServiceEvent
+
+@{
+    ViewBag.Title = "Vehicle Details";
+}
+
+<h2>Vehicle Details</h2>
+
+<div>
+    <h4>Vehicle Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicle.Vin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicle.Vin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicle.Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicle.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicle.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicle.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicle.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicle.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehicle.CurrentMileage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehicle.CurrentMileage)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.vehicle.Id })
+</p>
+
+<h4>Service History</h4>
+<p>
+    @Html.ActionLink("New Service Event", "Create", "ServiceEvent", new { vin = Model.vehicle.Vin }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceEvents[0].ServiceDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceEvents[0].Vin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceEvents[0].ServiceType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceEvents[0].ServiceMileage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceEvents[0].ServiceAmount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.serviceEvents)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceMileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to Vehicles", "Index", "Vehicle")
+</p>
+
